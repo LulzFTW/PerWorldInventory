@@ -38,6 +38,11 @@ public class PlayerGameModeChangeListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerGameModeChange(PlayerGameModeChangeEvent event) {
         Player player = event.getPlayer();
+
+        if (player.hasPermission("perworldinventories.bypass")) {
+            return;
+        }
+
         GameMode oldGameMode = player.getGameMode();
         GameMode newGameMode = event.getNewGameMode();
         Group group = plugin.getGroupManager().getGroupFromWorld(player.getWorld().getName());

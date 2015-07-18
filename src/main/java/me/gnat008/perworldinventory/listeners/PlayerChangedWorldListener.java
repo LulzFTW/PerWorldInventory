@@ -44,6 +44,11 @@ public class PlayerChangedWorldListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerChangeWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
+
+        if (player.hasPermission("perworldinventories.bypass")) {
+            return;
+        }
+
         String worldFrom = event.getFrom().getName();
         String worldTo = player.getWorld().getName();
         Group groupFrom = manager.getGroupFromWorld(worldFrom);
