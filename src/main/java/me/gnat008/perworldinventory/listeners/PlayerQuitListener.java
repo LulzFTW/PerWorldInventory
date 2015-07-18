@@ -39,6 +39,11 @@ public class PlayerQuitListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
+
+        if (player.hasPermission("perworldinventories.bypass")) {
+            return;
+        }
+
         String logoutWorld = player.getWorld().getName();
         Group group = plugin.getGroupManager().getGroupFromWorld(logoutWorld);
         if (group == null) {
